@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 // import * as firebase from "firebase";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -19,13 +19,6 @@ const firebaseConfig = {
   measurementId: "G-9W6T9ER4S0"
 };
 
-// Initialize Firebase
-// let app;
-// if (app.length===0){
-//     app = initializeApp(firebaseConfig);
-// } else {
-//     app=app();
-// }
 const firebaseApp = initializeApp(firebaseConfig);
 const auth=getAuth(firebaseApp);
 console.log('firebaseApp : ', firebaseApp);

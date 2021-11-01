@@ -8,14 +8,6 @@ const LoginScreen = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigation=useNavigation();
-    // useEffect(() => {
-    //     const unsubscribe=auth.onAuthStateChange(user=>{
-    //         if (user){
-    //             navigation.navigate('Home')
-    //         }
-    //     })
-    //     return unsubscribe;
-    // }, []);
     useEffect(() => {
         const unsubscribe=onAuthStateChanged(auth, user => {
             // Check for user status
@@ -31,7 +23,7 @@ const LoginScreen = () => {
        createUserWithEmailAndPassword(auth,email,password)
             .then(userCredential=>{
                 const user=userCredential.user;
-                console.log('Registered with: ',user.email)
+                alert('Registered with: ',user.email)
             })
             .catch((error)=>{alert(error.message)})
     };
@@ -39,7 +31,7 @@ const LoginScreen = () => {
         signInWithEmailAndPassword(auth,email,password)
             .then(userCredential=>{
                 const user=userCredential.user;
-                console.log('Logined in with: ',user.email)
+                alert('Logined in with: '+ user.email);
             })
             .catch((error)=>{alert(error.message)})
     };

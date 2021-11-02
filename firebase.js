@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+// import { getDatabase } from "firebase/database";
 
 // import * as firebase from "firebase";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -21,5 +22,6 @@ const firebaseConfig = {
 
 const firebaseApp = initializeApp(firebaseConfig);
 const auth=getAuth(firebaseApp);
-console.log('firebaseApp : ', firebaseApp);
+// const db = getDatabase(app);
+// console.log('firebaseApp : ', firebaseApp);
 export {auth};

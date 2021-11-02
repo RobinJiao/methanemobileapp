@@ -1,7 +1,8 @@
 import { useNavigation } from '@react-navigation/core';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, SafeAreaView } from 'react-native';
 import { auth } from '../firebase';
+import M5Switches from '../M5Switches';
 
 const HomeScreen = () => {
     const navigation=useNavigation();
@@ -15,7 +16,8 @@ const HomeScreen = () => {
         .catch((error)=>{alert(error.message)})
     }
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
+            <M5Switches/>
             <Text>Email: {auth.currentUser?.email}</Text>
             <TouchableOpacity
                 style={styles.button}
@@ -23,7 +25,7 @@ const HomeScreen = () => {
             >
                 <Text style={styles.buttonText}>Sign Out</Text>
             </TouchableOpacity>
-        </View>
+        </SafeAreaView>
     )
 }
 

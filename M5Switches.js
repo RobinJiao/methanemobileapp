@@ -4,52 +4,64 @@ import { getDatabase, ref, onValue} from "firebase/database";
 
 const M5Switches = () => {
     const db = getDatabase();
-    const [btnA, setBtnA]=useState(false);
-    const [btnB, setBtnB]=useState(false);
-    const [btnC, setBtnC]=useState(false);
-    let btnAReading=false,btnBReading=false,btnCReading=false;
-    console.log('rendering ....')
+    // const [btnA, setBtnA]=useState(false);
+    // const [btnB, setBtnB]=useState(false);
+    // const [btnC, setBtnC]=useState(false);
+    const [btns, setBtns]=useState([false,false,false]);
+    var btnAReading=false,btnBReading=false,btnCReading=false;
+    console.log('useState ....M5Switches btns: ', btns);
     const dbBtnA = ref(db, 'BtnA');
+    const dbBtnB = ref(db, 'BtnB');
+    const dbBtnC = ref(db, 'BtnC');
+
     onValue(dbBtnA, (snapshot)=>{
         btnAReading=snapshot.val();
         console.log('btnAReading: ', btnAReading);
-        // setBtnA(btnAReading);
     })
-    const dbBtnB = ref(db, 'BtnB');
+   
     onValue(dbBtnB, (snapshot)=>{
         btnBReading=snapshot.val();
         console.log('btnBReading: ', btnBReading);
-        // setBtnB(data);
     });
-    const dbBtnC = ref(db, 'BtnC');
+
     onValue(dbBtnC, (snapshot)=>{
         btnCReading=snapshot.val();
         console.log('btnCReading: ', btnCReading);
-        // setBtnC(btnCReading);
     })
     useEffect(() => {
-        setBtnA(btnAReading);
-        setBtnB(btnBReading);
-        setBtnC(btnCReading)
-        return () => {
-            // off();
-            ;
-        }
+        // setBtnA(btnAReading);
+        // setBtnB(btnBReading);
+        // setBtnC(btnCReading)
+        setBtns([btnAReading, btnBReading, btnCReading]);
+        console.log('useEffecting ......M5Switches btns: ', [btnAReading, btnBReading, btnCReading])
+        // return () => {}
     }, [btnAReading,btnBReading,btnCReading]);
+
+    const ShowButton=({btn,btnReading})=>{
+        const [btnValue, setBtnValue]= useState(btnReading);
+        useEffect(() => {
+            setBtnValue(btnReading);
+            return () => {
+                // cleanup
+            }
+        }, [btnReading]);
+        console.log('rendering ShowButton ...',btn)
+        return (
+            <View style={styles.buttonline}>
+                <Text>Button {btn}</Text>
+                <Button title={btnValue.toString()} />
+            </View>
+        )
+    }
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.buttonline}>
+            {/* <View style={styles.buttonline}>
                 <Text>Button A</Text>
                 <Button title={btnA.toString()} />
-            </View>
-            <View style={styles.buttonline}>
-                <Text>Button B</Text>
-                <Button title={btnB.toString()} />
-            </View>
-            <View style={styles.buttonline}>
-                <Text>Button C</Text>
-                <Button title={btnC.toString()} />
-            </View>
+            </View> */}
+            <ShowButton btn='A' btnReading={btns[0]} />
+            <ShowButton btn='B' btnReading={btns[1]} />
+            <ShowButton btn='C' btnReading={btns[2]} />
         </SafeAreaView>
     )
 }
@@ -67,6 +79,4 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
     },
-    trueButton:{},
-    falseButton:{},
 })

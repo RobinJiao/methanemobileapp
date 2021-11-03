@@ -11,13 +11,13 @@ const M5Switches = () => {
     const ShowButton=({btn,dbBtn})=>{
         const [btnValue, setBtnValue]= useState(false);
         useEffect(() => {
-            onValue(dbBtn, (snapshot)=>{
+            const unsubscribe= onValue(dbBtn, (snapshot)=>{
                 let btnReading=snapshot.val();
                 console.log('btn Reading: ',btn, btnReading);
                 setBtnValue(btnReading);
             })
             return () => {
-                // cleanup
+                unsubscribe;
             }
         }, [btn, dbBtn]);
         console.log('rendering ShowButton ...',btn)

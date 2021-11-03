@@ -4,11 +4,8 @@ import { getDatabase, ref, onValue} from "firebase/database";
 
 const M5Switches = () => {
     const db = getDatabase();
-    // const [btnA, setBtnA]=useState(false);
-    // const [btnB, setBtnB]=useState(false);
-    // const [btnC, setBtnC]=useState(false);
     const [btns, setBtns]=useState([false,false,false]);
-    var btnAReading=false,btnBReading=false,btnCReading=false;
+    let btnAReading=false,btnBReading=false,btnCReading=false;
     console.log('useState ....M5Switches btns: ', btns);
     const dbBtnA = ref(db, 'BtnA');
     const dbBtnB = ref(db, 'BtnB');
@@ -29,9 +26,6 @@ const M5Switches = () => {
         console.log('btnCReading: ', btnCReading);
     })
     useEffect(() => {
-        // setBtnA(btnAReading);
-        // setBtnB(btnBReading);
-        // setBtnC(btnCReading)
         setBtns([btnAReading, btnBReading, btnCReading]);
         console.log('useEffecting ......M5Switches btns: ', [btnAReading, btnBReading, btnCReading])
         // return () => {}
@@ -55,10 +49,6 @@ const M5Switches = () => {
     }
     return (
         <SafeAreaView style={styles.container}>
-            {/* <View style={styles.buttonline}>
-                <Text>Button A</Text>
-                <Button title={btnA.toString()} />
-            </View> */}
             <ShowButton btn='A' btnReading={btns[0]} />
             <ShowButton btn='B' btnReading={btns[1]} />
             <ShowButton btn='C' btnReading={btns[2]} />

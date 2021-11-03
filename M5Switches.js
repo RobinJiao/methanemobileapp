@@ -30,9 +30,9 @@ const M5Switches = () => {
     }
     return (
         <SafeAreaView style={styles.container}>
-            <ShowButton btn='AAA--' dbBtn={dbBtnA} />
-            <ShowButton btn='BBB--' dbBtn={dbBtnB}/>
-            <ShowButton btn='CCC--' dbBtn={dbBtnC} />
+            <ShowButton btn='A--' dbBtn={dbBtnA} />
+            <ShowButton btn='B--' dbBtn={dbBtnB}/>
+            <ShowButton btn='C--' dbBtn={dbBtnC} />
         </SafeAreaView>
     )
 }

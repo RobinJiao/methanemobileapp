@@ -36,7 +36,7 @@ const LoginScreen = () => {
             .catch((error)=>{alert(error.message)})
     };
     return (
-        <KeyboardAvoidingView
+        <View
             style={styles.container}
             behavior='padding'
         >
@@ -69,7 +69,7 @@ const LoginScreen = () => {
                     <Text style={ styles.buttonOutlineText}> Register </Text>
                 </TouchableOpacity>
             </View>
-        </KeyboardAvoidingView>
+        </View>
     )
 }
 

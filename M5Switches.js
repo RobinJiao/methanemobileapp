@@ -49,5 +49,6 @@ const styles = StyleSheet.create({
     buttonline:{
         flexDirection:'row',
         alignItems:'center',
+        padding:10
     },
 })
